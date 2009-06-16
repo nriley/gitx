@@ -127,7 +127,10 @@ var showSelection = function(list, from, to)
   
 var load = function()
 {
-    document.onmousedown = deselect;
+    document.onmousedown = function(event) {
+	if(event.which!=1) return false;
+	deselect();
+    }
     document.onselectstart = function () {return false;};
     
     highlightDiff($("orig_diff").value,
