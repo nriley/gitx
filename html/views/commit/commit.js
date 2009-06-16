@@ -75,6 +75,92 @@ var showFileChanges = function(file, cached) {
 	displayDiff(changes, cached);
 }
 
+/* Set the event handlers for mouse clicks/drags */
+var setSelectHandlers = function()
+{
+	document.onmousedown = function(event) {
+		if(event.which!=1) return false;
+		deselect();
+		currentSelection=false;
+	}
+	document.onselectstart = function () {return false;}; /* prevent normal text selection */
+    
+	var list = document.getElementsByClassName("lines");
+
+	document.onmouseup = function(event) { 
+		// Handle button releases outside of lines list 
+		for (i = 0; i < list.length; ++i) {
+			file=list[i];
+			file.onmouseover=null;
+			file.onmouseup=null;
+		}
+	}
+
+	for (i = 0; i < list.length; ++i) {
+		var file = list[i];
+		file.ondblclick = function (event) {
+			var file=event.target.parentNode;
+			if (file.id = "selected") 
+				file=file.parentNode;
+			var start=event.target;
+			var cls=start.getAttribute("class");
+			if(!cls || !(cls=="addline" | cls=="delline")) return false; 
+			deselect();
+			var bounds=findsubhunk(start);
+			showSelection(file,bounds[0],bounds[1],true);
+			return false;
+		};
+	
+		file.onmousedown = function(event) {
+			if (event.which!=1) return false;
+			var cls=event.target.getAttribute("class")
+			event.stopPropagation();
+			if (cls == "hunkheader" || cls == "hunkbutton") 
+				return false;
+
+			var file=event.target.parentNode;
+			if (file.id && file.id=="selected") 
+				file=file.parentNode;
+	    
+			file.onmouseup = function(event) {
+				file.onmouseover = null;
+				file.onmouseup = null;
+				event.stopPropagation();
+				return false;
+			};
+	
+			if (event.shiftKey && currentSelection) { // Extend selection
+				var index=parseInt(event.target.getAttribute("index"));
+				var min=parseInt(currentSelection.bounds[0].getAttribute("index"));
+				var max=parseInt(currentSelection.bounds[1].getAttribute("index"));
+				var ender=1;
+				if(min>max) {
+					var tmp=min; min=max; max=tmp;
+					ender=0;
+				} 
+						
+				if (index < min)
+					showSelection(file,currentSelection.bounds[ender],
+						      event.target);
+				else if (index > max)
+					showSelection(file,currentSelection.bounds[1-ender],
+						      event.target);
+				else showSelection(file,currentSelection.bounds[0],event.target);
+				return false;
+			}
+						
+						
+			file.onmouseover = function(event2) {
+				showSelection(file, event.srcElement, event2.target);
+				return false;
+			};
+			showSelection(file, event.srcElement, event.srcElement);
+			return false;
+		}
+	}
+}
+
+
 var diffHeader;
 var originalDiff;
 var originalCached;
@@ -98,6 +184,7 @@ var displayDiff = function(diff, cached)
 			header.innerHTML = "<a href='#' class='hunkbutton' onclick='discardHunk(this, event); return false'>Discard</a>" + header.innerHTML;
 		}
 	}
+	setSelectHandlers();
 }
 
 var getNextText = function(element)
