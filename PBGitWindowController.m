@@ -109,6 +109,7 @@ enum {
 	[self setNextResponder: viewController];
 	[self didChangeValueForKey:@"viewController"];	// this will trigger the NSTextField's value binding to change
 
+	[[self window] makeFirstResponder:[viewController firstResponder]];
 }
 
 - (void)awakeFromNib
