@@ -8,6 +8,7 @@
 
 #import "PBGitIndexController.h"
 #import "PBChangedFile.h"
+#import "PBFileChangesTableView.h"
 #import "PBGitRepository.h"
 
 #define FileChangesTableViewType @"GitFileChangedType"
@@ -313,6 +314,17 @@
 	[ws selectFile: path inFileViewerRootedAtPath:nil];
 }
 
+# pragma mark Buttons
+
+- (IBAction)stageSelectedFiles:(id)sender;
+{
+    [self tableClicked:unstagedTable];
+}
+
+- (IBAction)unstageSelectedFiles:(id)sender;
+{
+    [self tableClicked:stagedTable];
+}
 
 # pragma mark TableView icon delegate
 - (void)tableView:(NSTableView*)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn*)tableColumn row:(NSInteger)rowIndex
@@ -326,11 +338,15 @@
 	NSArrayController *controller = [tableView tag] == 0 ? unstagedFilesController : stagedFilesController;
 
 	NSIndexSet *selectionIndexes = [tableView selectedRowIndexes];
+	NSUInteger firstSelectedRowIndex = [selectionIndexes firstIndex];
 	NSArray *files = [[controller arrangedObjects] objectsAtIndexes:selectionIndexes];
 	if ([tableView tag] == 0)
 		[self stageFiles:files];
 	else
 		[self unstageFiles:files];
+	
+    if (firstSelectedRowIndex < [tableView numberOfRows])
+		[tableView selectRow: firstSelectedRowIndex byExtendingSelection:NO];
 }
 
 - (void) rowClicked:(NSCell *)sender
@@ -395,6 +411,13 @@ writeRowsWithIndexes:(NSIndexSet *)rowIndexes
 		[self stageFiles:files];
 
 	return YES;
+}
+
+// XXX may be able to do this with bindings?
+- (void)tableViewSelectionDidChange:(NSNotification *)notification;
+{
+	PBFileChangesTableView *tableView = [notification object];
+	[[tableView moveButton] setEnabled:[tableView numberOfSelectedRows] > 0];
 }
 
 - (NSString *) contextParameter
