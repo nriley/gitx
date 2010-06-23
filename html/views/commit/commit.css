@@ -2,11 +2,11 @@ body {
 	padding: 0px;
 	margin: 0px;
 	margin-top: 30px;
+        font-size: 11px;
 }
 
 #title {
-	padding: 2px;
-	padding-left: 5px;
+	padding: 2px 2px 0px 5px;
 	border-bottom: 1px solid black;
 	margin: 0px;
 	font-weight: 500;
@@ -64,8 +64,7 @@ table.diff {
 .diff .hunkbutton {
 	width: 40px;
 	padding: 0 2px 0 2px;
-	margin-bottom: 4px;
-	margin-right: 1px;
+        margin: 0px 1px 2px 0px;
 	float: right;
 	position: relative;
 	z-index: 1;
@@ -74,8 +73,7 @@ table.diff {
 	background-color: #cce5ff;
 	color: #204a87;
 
-	font-family: 'Lucida Grande';
-	font-size: 80%;
+	font: 9px/10px 'Lucida Grande';
 	text-decoration: none;
 	text-align: center;
 
@@ -92,8 +90,6 @@ table.diff {
     padding-left: 2px;
     width: auto;
     padding-right: 2px;
-    margin-right: 2px;
-    margin-top: 1px;
     clear: right;
     background-color: #FFF;
 }

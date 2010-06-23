@@ -53,7 +53,7 @@
 {
 	[[self window] setDelegate:self];
 	[[self window] setAutorecalculatesContentBorderThickness:NO forEdge:NSMinYEdge];
-	[[self window] setContentBorderThickness:31.0f forEdge:NSMinYEdge];
+	[[self window] setContentBorderThickness:24.0f forEdge:NSMinYEdge];
 
 	sidebarController = [[PBGitSidebarController alloc] initWithRepository:repository superController:self];
 	[[sidebarController view] setFrame:[sourceSplitView bounds]];
@@ -210,7 +210,7 @@
 #pragma mark -
 #pragma mark SplitView Delegates
 
-#define kGitSplitViewMinWidth 150.0f
+#define kGitSplitViewMinWidth 100.0f
 #define kGitSplitViewMaxWidth 300.0f
 
 #pragma mark min/max widths while moving the divider

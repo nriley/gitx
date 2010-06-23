@@ -1,21 +1,28 @@
 body {
 	font-family: 'Lucida Grande';
+        margin: 0px;
+}
+
+body, td {
+        font-size: 11px;
 }
 
 #commit_header {
 	width: 100%;
-	font-size: 12px;
-	padding-left: 5px;
-	padding-right: 5px;
+        margin-top: 5px;
+        padding: 0px;
 }
 
 #authorTable {
 	margin: -4px;
 }
 
+/* seems to break in WebKit from Safari 5 */
 #rightcontent {
-	float: right;
-	margin: 5px;
+	position: absolute;
+        top: 0px;
+        right: 0px;
+	margin: 4px 0px 0px 0px;
 }
 
 #buttons {
@@ -24,15 +31,14 @@ body {
 
 #gist {
 	-webkit-appearance: button;
-	font: 13px bold 'Lucida Grande';
-	width: 80px;
-	height: 23px;
+	font: 11px bold 'Lucida Grande';
+	width: 60px;
 	margin-right: 5px;
+        float: right;
 }
 
 .gravatar {
 	padding: 0.1em;
-
 	border: solid gray 1px;
 	-webkit-border-radius: 2px;
 }
@@ -53,21 +59,20 @@ body {
 
 
 #message_files {
-	margin: 5px;
-	padding-left: 1em;
+	margin: 0px;
 	width: auto;
 }
 
 #message {
 	font-family: Monaco;
-    font-size: 10px;
+        font-size: 10px;
 	white-space: pre-wrap;
-	padding-top: 12px;
+        margin: 1em;
 }
 
 #files {
-	margin-top: 1em;
-	margin-left: 0.5em;
+	margin-top: 0.5em;
+	margin-left: 1.5em;
 }
 
 #files a {
@@ -89,6 +94,7 @@ body {
 #files p {
 	margin-top: 0.25em;
 	margin-bottom: 0.25em;
+        font-size: 11px;
 }
 
 .clear_both {
@@ -109,7 +115,7 @@ body {
 hr {
 	border: 0;
 	height: 1px;
-	margin: 0 8px;
+	margin: 3px 0px;
 	background-color: #DEDEDE;
 	clear: both;
 }
