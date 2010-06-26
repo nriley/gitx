@@ -18,6 +18,9 @@
 	IBOutlet NSTableView *stagedTable;	
 }
 
+- (IBAction)stageSelectedFiles:(id)sender;
+- (IBAction)unstageSelectedFiles:(id)sender;
+
 - (IBAction) rowClicked:(NSCell *) sender;
 - (IBAction) tableClicked:(NSTableView *)tableView;
 
