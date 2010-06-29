@@ -21,7 +21,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="3"/>
+			<integer value="27"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -518,7 +518,7 @@
 															<object class="NSTableColumn" id="792589327">
 																<string key="NSIdentifier">AuthorColumn</string>
 																<double key="NSWidth">129</double>
-																<double key="NSMinWidth">40</double>
+																<double key="NSMinWidth">50</double>
 																<double key="NSMaxWidth">1000</double>
 																<object class="NSTableHeaderCell" key="NSHeaderCell">
 																	<int key="NSCellFlags">75628096</int>
@@ -544,8 +544,8 @@
 															<object class="NSTableColumn" id="976830280">
 																<string key="NSIdentifier">DateColumn</string>
 																<double key="NSWidth">165</double>
-																<double key="NSMinWidth">10</double>
-																<double key="NSMaxWidth">3.4028230607370965e+38</double>
+																<double key="NSMinWidth">100</double>
+																<double key="NSMaxWidth">300</double>
 																<object class="NSTableHeaderCell" key="NSHeaderCell">
 																	<int key="NSCellFlags">75628096</int>
 																	<int key="NSCellFlags2">2048</int>
@@ -568,15 +568,15 @@
 																	<reference key="NSBackgroundColor" ref="827363147"/>
 																	<reference key="NSTextColor" ref="57062640"/>
 																</object>
-																<int key="NSResizingMask">3</int>
+																<int key="NSResizingMask">2</int>
 																<bool key="NSIsResizeable">YES</bool>
 																<reference key="NSTableView" ref="254268962"/>
 															</object>
 															<object class="NSTableColumn" id="456964926">
 																<string key="NSIdentifier">SHAColumn</string>
 																<double key="NSWidth">30</double>
-																<double key="NSMinWidth">10</double>
-																<double key="NSMaxWidth">3.4028230607370965e+38</double>
+																<double key="NSMinWidth">25</double>
+																<double key="NSMaxWidth">245</double>
 																<object class="NSTableHeaderCell" key="NSHeaderCell">
 																	<int key="NSCellFlags">75628096</int>
 																	<int key="NSCellFlags2">2048</int>
@@ -589,16 +589,16 @@
 																	<int key="NSCellFlags">338820672</int>
 																	<int key="NSCellFlags2">1024</int>
 																	<string key="NSContents">Text Cell</string>
-																	<object class="NSFont" key="NSSupport">
-																		<string key="NSName">LucidaGrande</string>
-																		<double key="NSSize">12</double>
+																	<object class="NSFont" key="NSSupport" id="758846249">
+																		<string key="NSName">Monaco</string>
+																		<double key="NSSize">10</double>
 																		<int key="NSfFlags">16</int>
 																	</object>
 																	<reference key="NSControlView" ref="254268962"/>
 																	<reference key="NSBackgroundColor" ref="827363147"/>
 																	<reference key="NSTextColor" ref="57062640"/>
 																</object>
-																<int key="NSResizingMask">3</int>
+																<int key="NSResizingMask">2</int>
 																<bool key="NSIsResizeable">YES</bool>
 																<reference key="NSTableView" ref="254268962"/>
 																<bool key="NSHidden">YES</bool>
@@ -621,7 +621,7 @@
 														<reference key="NSDelegate"/>
 														<reference key="NSDataSource"/>
 														<string key="NSAutosaveName">CommitView</string>
-														<int key="NSColumnAutoresizingStyle">5</int>
+														<int key="NSColumnAutoresizingStyle">2</int>
 														<int key="NSDraggingSourceMaskForLocal">15</int>
 														<int key="NSDraggingSourceMaskForNonLocal">0</int>
 														<bool key="NSAllowsTypeSelect">YES</bool>
@@ -1051,11 +1051,7 @@
 																									</object>
 																									<object class="NSMutableArray" key="dict.values">
 																										<bool key="EncodedWithXMLCoder">YES</bool>
-																										<object class="NSFont">
-																											<string key="NSName">Monaco</string>
-																											<double key="NSSize">10</double>
-																											<int key="NSfFlags">16</int>
-																										</object>
+																										<reference ref="758846249"/>
 																										<object class="NSParagraphStyle">
 																											<int key="NSAlignment">3</int>
 																											<object class="NSArray" key="NSTabStops">
