@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="396"/>
+			<integer value="351"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -367,7 +367,7 @@
 									<object class="NSTextFieldCell" key="NSCell" id="708164574">
 										<int key="NSCellFlags">67239488</int>
 										<int key="NSCellFlags2">4327424</int>
-										<string key="NSContents">Label</string>
+										<string key="NSContents">Loading…</string>
 										<object class="NSFont" key="NSSupport">
 											<string key="NSName">LucidaGrande</string>
 											<double key="NSSize">11</double>
