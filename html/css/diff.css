@@ -14,7 +14,7 @@
 
 .diff .file .diffContent {
 	white-space: pre;
-	font: 11px/12px Screen;
+	font: 11px/12px Screen, Menlo, Monaco;
 }
 
 .diff .file .diffcontent .lineno {
