@@ -35,6 +35,7 @@
 - (void) updateBranchFilterMatrix;
 - (void) restoreFileBrowserSelection;
 - (void) saveFileBrowserSelection;
+- (BOOL) selectCommit:(NSString *)commitSHA scrollingToTop:(BOOL)scrollingToTop;
 
 @end
 
@@ -276,6 +277,11 @@
 	}
 
 	if([(NSString *)context isEqualToString:@"revisionListUpdatedGraph"]) {
+		if (shaToSelectAfterRefresh != nil) {
+			BOOL didSelectSHA = [self selectCommit:shaToSelectAfterRefresh scrollingToTop:NO];
+			shaToSelectAfterRefresh = nil;
+			if (didSelectSHA) return;
+		}
 		if ([repository.currentBranch isSimpleRef])
 			[self selectCommit:[repository shaForRef:[repository.currentBranch ref]]];
 		else
@@ -391,6 +397,8 @@
 
 - (IBAction) refresh:(id)sender
 {
+	if (selectedCommit != nil)
+		shaToSelectAfterRefresh = [selectedCommit realSha];
 	[repository forceUpdateRevisions];
 }
 
@@ -441,7 +449,7 @@
 	return selectedCommits;
 }
 
-- (BOOL) selectCommit:(NSString *)commitSHA
+- (BOOL) selectCommit:(NSString *)commitSHA scrollingToTop:(BOOL)scrollingToTop;
 {
     ApplicationController * appController = [ApplicationController sharedApplicationController];
     if (appController.launchedFromGitx && [appController.cliArgs isEqualToString:@"--commit"]) {
@@ -461,12 +469,19 @@
 
 	[commitController setSelectedObjects:selectedCommits];
 
-	if (repository.currentBranchFilter != kGitXSelectedBranchFilter) {
+	if (!scrollingToTop) {
+		[commitList scrollRowToVisible:[[commitController selectionIndexes] firstIndex]];
+	} else if (repository.currentBranchFilter != kGitXSelectedBranchFilter) {
         // NSLog(@"[%@ %s] currentBranchFilter = %@", [self class], _cmd, PBStringFromBranchFilterType(repository.currentBranchFilter));
         [self scrollSelectionToTopOfViewFrom:oldIndex];
     }
 
     return YES;
+}
+
+- (BOOL) selectCommit:(NSString *)commitSHA
+{
+	return [self selectCommit:commitSHA scrollingToTop:YES];
 }
 
 - (BOOL) hasNonlinearPath

@@ -52,6 +52,7 @@
 	PBGitTree *gitTree;
 	PBGitCommit *webCommit;
 	PBGitCommit *selectedCommit;
+	NSString *shaToSelectAfterRefresh;
 
     PBSourceViewItem * sidebarRemotes;
     NSOutlineView * sidebarSourceView;
