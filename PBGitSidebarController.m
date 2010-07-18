@@ -233,6 +233,9 @@
 }
 
 - (PBSourceViewItem *) itemForRev:(PBGitRevSpecifier *)rev {
+	if (!rev)
+		return nil;
+
 	PBSourceViewItem *foundItem = nil;
 	for (PBSourceViewItem *item in items) {
         if (foundItem = [item findRev:rev]) {
@@ -275,13 +278,13 @@
         return;
     }
 
-    if (!rev) {
+	PBSourceViewItem *item = [self itemForRev:rev];
+    if (!item) {
         [repository reloadRefs];
         [repository readCurrentBranch];
         return;
     }
 
-    PBSourceViewItem *item = [self itemForRev:rev];
     [self selectBranch:item];
 }
 
